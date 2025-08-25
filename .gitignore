@@ -1,0 +1,9 @@
+# user specific private variables
+.env
+.env.local
+.env.staging
+.env.production
+
+coder.log
+coder.zip
+coder.exe
