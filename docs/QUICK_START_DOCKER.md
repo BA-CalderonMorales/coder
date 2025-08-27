@@ -1,4 +1,4 @@
-# Quick Start Guide for Coder Server
+# Quick Start Guide for Coder Server - Docker
 
 This guide will help you get started with running the Coder server locally.
 
