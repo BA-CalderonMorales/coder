@@ -1,38 +1,38 @@
 # Coder Local Development Setup
 
-This repository contains the necessary files to run a local instance of the Coder server for development and testing purposes.
+Repository for running a local Coder server instance.
 
-For comprehensive documentation, please refer to the official Coder repository: [https://github.com/coder/coder](https://github.com/coder/coder)
+[Official Coder Repository](https://github.com/coder/coder)
 
-## Quick Start (Git Bash)
+## Quick Start
 
-To get started quickly with Coder in Git Bash, please refer to our [Quick Start Guide](./docs/QUICK_START.md).
+See [Quick Start Guide](./docs/QUICK_START.md)
 
 ## Contents
 
-- `coder.exe`: The Coder server executable (ignored by Git).
-- `start.sh`: A script to start the Coder server locally.
-- `docs/QUICK_START.md`: Instructions for starting the Coder server in Git Bash.
+- `coder.exe`: Coder server executable (Git ignored)
+- `start.windows.sh`: Start script for Coder server
+- `docs/`: Documentation guides
 
 ## Prerequisites
 
-- Git Bash (for Windows users).
-- The `coder.exe` file must be present in this directory.
+- Git Bash
+- `coder.exe` in project root
 
-## Starting the Server
+## Start Server
 
-1. Open Git Bash.
-2. Navigate to this directory.
-3. Run the start script:
+1. Open Git Bash
+2. Navigate to project directory
+3. Run start script:
    ```bash
-   ./start.sh
+   ./start.windows.sh
    ```
-4. Once the server is running, open your browser and go to `http://127.0.0.1:3000`.
+4. Open browser to `http://127.0.0.1:3000`
 
-## Stopping the Server
+## Stop Server
 
-To stop the server, press `Ctrl+C` in the terminal where the server is running.
+Press `Ctrl+C` in terminal
 
 ## Environment Variables
 
-You can configure the server using a `.env` file. An example `.env.example` file is provided.
+Configure with `.env` file (see `.env.example`)
