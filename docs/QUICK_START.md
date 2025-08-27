@@ -2,17 +2,26 @@
 
 ## Prerequisites
 
-- Git Bash (Windows)
+- Git Bash (Windows only)
+- Terminal (macOS/Linux)
 
 ## Start Server
 
-1. Open Git Bash
+1. Open your terminal (Git Bash on Windows, Terminal on macOS/Linux)
 2. Navigate to project directory
-3. Run start script:
+3. Run the appropriate start script for your platform:
    ```bash
+   # Windows
    ./start.windows.sh
+   
+   # macOS
+   ./start.mac.sh
+   
+   # Linux
+   ./start.linux.sh
    ```
-4. Open browser to `http://127.0.0.1:3000`
+4. The start script will automatically download and install Coder if needed
+5. Open browser to `http://127.0.0.1:3000`
 
 ## Stop Server
 
@@ -22,21 +31,16 @@ Press `Ctrl+C` in terminal
 
 If you prefer to manually install Coder, you can use one of these methods:
 
-### Option 1: Curl
-```bash
-curl -L https://coder.com/install.sh | sh
-```
-After installation, move `coder.exe` to the project root directory.
+### Option 1: Direct Download
+1. Download the appropriate binary from [GitHub releases](https://github.com/coder/coder/releases)
+2. Extract `coder`/`coder.exe` to project root
 
-### Option 2: Winget
-```bash
-winget install Coder.Coder
-```
-After installation, locate `coder.exe` and move it to the project root directory.
+### Option 2: Package Managers
+- **Windows**: `winget install Coder.Coder`
+- **macOS**: `brew install coder`
+- **Linux**: Install via apt (see [Coder documentation](https://coder.com/docs/v2/latest/install))
 
-### Option 3: Manual Install
-1. Download from [GitHub releases](https://github.com/coder/coder/releases)
-2. Extract `coder.exe` to project root
+After installation, move the `coder`/`coder.exe` binary to the project root directory.
 
 ## Good/Happy Path Diagram
 
@@ -46,7 +50,7 @@ After installation, locate `coder.exe` and move it to the project root directory
 ├─────────────────────────────────────┤
 │                                     │
 │  ┌─────────────────────────────┐    │
-│  │   Git Bash (Terminal)       │    │
+│  │   Terminal (Git Bash)       │    │
 │  └─────────────▲───────────────┘    │
 │                │                    │
 │  ┌─────────────┴───────────────┐    │
