@@ -1,9 +1,18 @@
-# user specific private variables
+# Environment variable files
 .env
 .env.local
 .env.staging
 .env.production
 
-coder.log
-coder.zip
+# Local coder artifacts
+coder
 coder.exe
+coder.log
+
+# Download/output directories
+.bin/
+
+# Archives
+*.tar.gz
+*.tgz
+*.zip
