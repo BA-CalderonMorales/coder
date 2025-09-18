@@ -10,6 +10,7 @@ coder.exe
 coder.log
 
 # Download/output directories
+.bin
 .bin/
 
 # Archives
