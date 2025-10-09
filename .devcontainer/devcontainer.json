@@ -1,0 +1,51 @@
+{
+  "name": "Coder Starter Scripts Development",
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+  "remoteUser": "codespace",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Coder Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "updateContentCommand": "bash .devcontainer/scripts/setup-dev-environment.sh",
+  "postCreateCommand": [
+    "bash",
+    ".devcontainer/scripts/setup-dev-environment.sh"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "timonwong.shellcheck",
+        "foxundermoon.shell-format",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "files.exclude": {
+          "**/.bin": true,
+          "**/coder": true,
+          "**/coder.exe": true,
+          "**/*.tar.gz": true,
+          "**/*.zip": true
+        },
+        "search.exclude": {
+          "**/.bin": true,
+          "**/coder": true,
+          "**/coder.exe": true
+        },
+        "editor.formatOnSave": true,
+        "[shellscript]": {
+          "editor.defaultFormatter": "foxundermoon.shell-format"
+        },
+        "shellcheck.enable": true,
+        "shellcheck.run": "onType"
+      }
+    }
+  },
+  "shutdownAction": "stopContainer",
+  "waitFor": "postCreateCommand"
+}
