@@ -1,5 +1,54 @@
 #!/bin/bash
 
+ensure_utf8_locale() {
+    local preferred_locales=("en_US.UTF-8" "en_US.utf8" "C.UTF-8" "C.utf8")
+    local available_locales
+    local selected_locale=""
+
+    available_locales=$(LC_ALL=C locale -a 2>/dev/null)
+
+    for candidate in "${preferred_locales[@]}"; do
+        if printf "%s\n" "$available_locales" | grep -qi "^${candidate}$"; then
+            selected_locale="$candidate"
+            break
+        fi
+    done
+
+    if [ -z "$selected_locale" ]; then
+        local target_locale="en_US.UTF-8"
+        echo "Locale $target_locale not found. Attempting to generate it..."
+
+        if command -v locale-gen >/dev/null 2>&1; then
+            if sudo locale-gen "$target_locale"; then
+                available_locales=$(LC_ALL=C locale -a 2>/dev/null)
+                if printf "%s\n" "$available_locales" | grep -qi "^en_US\.utf8$"; then
+                    selected_locale="en_US.utf8"
+                fi
+            else
+                echo "Warning: Failed to generate $target_locale using locale-gen."
+            fi
+        elif command -v localedef >/dev/null 2>&1; then
+            if sudo localedef -f UTF-8 -i en_US "$target_locale"; then
+                selected_locale="en_US.UTF-8"
+            else
+                echo "Warning: Failed to generate $target_locale using localedef."
+            fi
+        else
+            echo "Warning: locale-gen and localedef were not found."
+        fi
+    fi
+
+    if [ -z "$selected_locale" ]; then
+        echo "Falling back to C.utf8 locale."
+        selected_locale="C.utf8"
+    fi
+
+    export LANG="$selected_locale"
+    export LC_ALL="$selected_locale"
+    export LC_CTYPE="$selected_locale"
+    export LC_MESSAGES="$selected_locale"
+}
+
 # Check if coder binary exists, if not download it
 if [ ! -f "coder" ]; then
     echo "coder binary not found. Attempting to download Coder..."
@@ -24,7 +73,7 @@ if [ ! -f "coder" ]; then
                 echo "Downloading from: $DOWNLOAD_URL"
                 if curl -L -o coder.tar.gz "$DOWNLOAD_URL"; then
                     # Extract the tar.gz file
-                    tar -xzf coder.tar.gz coder
+                    tar -xzf coder.tar.gz
                     # Clean up
                     rm -f coder.tar.gz
                     # Make it executable
@@ -53,7 +102,7 @@ if [ ! -f "coder" ]; then
             if sudo apt install coder; then
                 # Copy to current directory
                 if command -v coder &> /dev/null; then
-                    cp $(which coder) .
+                    cp "$(command -v coder)" .
                     echo "Coder successfully installed via package manager."
                 fi
             else
@@ -90,4 +139,5 @@ echo "Navigate to http://127.0.0.1:3000 in your browser after the server starts.
 echo "Press Ctrl+C to stop the server."
 
 # Run the Coder server
+ensure_utf8_locale
 ./coder server
