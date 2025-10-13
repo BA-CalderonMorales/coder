@@ -1,83 +1,133 @@
-# Coder Local Development Setup
+<!-- markdownlint-disable MD041 -->
+<div align="center">
+  <a href="https://coder.com#gh-light-mode-only">
+    <img src="./docs/images/logo-black.png" alt="Coder Logo Light" style="width: 128px">
+  </a>
+  <a href="https://coder.com#gh-dark-mode-only">
+    <img src="./docs/images/logo-white.png" alt="Coder Logo Dark" style="width: 128px">
+  </a>
 
-Repository for running a local Coder server instance.
+  <h1>
+  Self-Hosted Cloud Development Environments
+  </h1>
 
-[Official Coder Repository](https://github.com/coder/coder)
+  <a href="https://coder.com#gh-light-mode-only">
+    <img src="./docs/images/banner-black.png" alt="Coder Banner Light" style="width: 650px">
+  </a>
+  <a href="https://coder.com#gh-dark-mode-only">
+    <img src="./docs/images/banner-white.png" alt="Coder Banner Dark" style="width: 650px">
+  </a>
 
-## Quick Start
+  <br>
+  <br>
 
-See [Quick Start Guide](./docs/QUICK_START.md)
+[Quickstart](#quickstart) | [Docs](https://coder.com/docs) | [Why Coder](https://coder.com/why) | [Premium](https://coder.com/pricing#compare-plans)
 
-## Contents
+[![discord](https://img.shields.io/discord/747933592273027093?label=discord)](https://discord.gg/coder)
+[![release](https://img.shields.io/github/v/release/coder/coder)](https://github.com/coder/coder/releases/latest)
+[![godoc](https://pkg.go.dev/badge/github.com/coder/coder.svg)](https://pkg.go.dev/github.com/coder/coder)
+[![Go Report Card](https://goreportcard.com/badge/github.com/coder/coder/v2)](https://goreportcard.com/report/github.com/coder/coder/v2)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9511/badge)](https://www.bestpractices.dev/projects/9511)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/coder/coder/badge)](https://scorecard.dev/viewer/?uri=github.com%2Fcoder%2Fcoder)
+[![license](https://img.shields.io/github/license/coder/coder)](./LICENSE)
 
-- Platform-specific start scripts (`start.windows.sh`, `start.mac.sh`, `start.linux.sh`)
-- GitHub Codespaces bootstrap script (`start.gh.codespaces.sh`)
-- Documentation in `docs/` directory
+</div>
 
-## Prerequisites
+[Coder](https://coder.com) enables organizations to set up development environments in their public or private cloud infrastructure. Cloud development environments are defined with Terraform, connected through a secure high-speed Wireguard® tunnel, and automatically shut down when not used to save on costs. Coder gives engineering teams the flexibility to use the cloud for workloads most beneficial to them.
 
-- Git Bash (Windows), Terminal (macOS/Linux)
-- Internet connection (for automatic Coder download)
+- Define cloud development environments in Terraform
+  - EC2 VMs, Kubernetes Pods, Docker Containers, etc.
+- Automatically shutdown idle resources to save on costs
+- Onboard developers in seconds instead of days
 
-## Start Server
+<p align="center">
+  <img src="./docs/images/hero-image.png" alt="Coder Hero Image">
+</p>
 
-1. Open your terminal (Git Bash on Windows)
-2. Navigate to project directory
-3. Run the appropriate start script for your platform:
-   ```bash
-   # Windows
-   ./start.windows.sh
-   
-   # macOS
-   ./start.mac.sh
-   
-   # Linux
-   ./start.linux.sh
-   
-   # GitHub Codespaces (inside a Codespace terminal)
-   ./start.gh.codespaces.sh
-   ```
-4. Open browser to `http://127.0.0.1:3000`
+## Quickstart
 
-## Stop Server
+The most convenient way to try Coder is to install it on your local machine and experiment with provisioning cloud development environments using Docker (works on Linux, macOS, and Windows).
 
-Press `Ctrl+C` in terminal
+```shell
+# First, install Coder
+curl -L https://coder.com/install.sh | sh
 
-## Environment Variables
+# Start the Coder server (caches data in ~/.cache/coder)
+coder server
 
-Configure with `.env` file (see `.env.example`)
+# Navigate to http://localhost:3000 to create your initial user,
+# create a Docker template and provision a workspace
+```
 
-## Automatic Coder Installation
+## Install
 
-The start scripts will automatically download and install Coder if it's not found in the project directory:
-1. Direct download from GitHub releases (primary method)
-2. Platform-specific package managers (fallback)
-3. Manual download instructions (final fallback)
+The easiest way to install Coder is to use our
+[install script](https://github.com/coder/coder/blob/main/install.sh) for Linux
+and macOS. For Windows, use the latest `..._installer.exe` file from GitHub
+Releases.
 
-## GitHub Codespaces Usage
+```shell
+curl -L https://coder.com/install.sh | sh
+```
 
-We currently lean on `./start.gh.codespaces.sh` to rapidly spin up and tear down an isolated learning / experimentation environment without polluting local machines. This script is optimized for:
+You can run the install script with `--dry-run` to see the commands that will be used to install without executing them. Run the install script with `--help` for additional flags.
 
-- Ephemeral environments (open Codespace, explore, discard)
-- Fast bootstrap (auto‑download if Coder binary missing)
-- Consistent baseline across contributors
+> See [install](https://coder.com/docs/install) for additional methods.
 
-### Typical Flow
+Once installed, you can start a production deployment with a single command:
 
-1. Create / open a GitHub Codespace for this repo
-2. Run `./start.gh.codespaces.sh`
-3. Wait for the Coder server to report it is listening on port 3000
-4. Use the forwarded port (Codespaces will usually auto-detect) to open the UI
-5. When finished, simply stop or delete the Codespace (environment torn down automatically)
+```shell
+# Automatically sets up an external access URL on *.try.coder.app
+coder server
 
-### Why Codespaces First?
+# Requires a PostgreSQL instance (version 13 or higher) and external access URL
+coder server --postgres-url <url> --access-url <url>
+```
 
-While we're still solidifying core workflows and fundamentals (auth, workspace templates, storage, update cadence), the ephemeral Codespaces path lets us iterate quickly. Once those fundamentals are stable, we'll rely more heavily on the platform-specific scripts (`start.windows.sh`, `start.mac.sh`, `start.linux.sh`) for long‑lived local installs and deeper performance / networking validation.
+Use `coder --help` to get a list of flags and environment variables. Use our [install guides](https://coder.com/docs/install) for a complete walkthrough.
 
-### Transition Plan
+## Documentation
 
-- Short term: Prefer `start.gh.codespaces.sh` for exploration & docs validation
-- Mid term: Mirror any improvements back into local start scripts
-- Longer term: Treat Codespaces script as a convenience path; primary guidance shifts to native OS scripts for production‑like local testing
+Browse our docs [here](https://coder.com/docs) or visit a specific section below:
 
-If you notice divergence between the Codespaces script and the others, open an issue or PR so we can keep behavior aligned.
+- [**Templates**](https://coder.com/docs/templates): Templates are written in Terraform and describe the infrastructure for workspaces
+- [**Workspaces**](https://coder.com/docs/workspaces): Workspaces contain the IDEs, dependencies, and configuration information needed for software development
+- [**IDEs**](https://coder.com/docs/ides): Connect your existing editor to a workspace
+- [**Administration**](https://coder.com/docs/admin): Learn how to operate Coder
+- [**Premium**](https://coder.com/pricing#compare-plans): Learn about our paid features built for large teams
+
+## Support
+
+Feel free to [open an issue](https://github.com/coder/coder/issues/new) if you have questions, run into bugs, or have a feature request.
+
+[Join our Discord](https://discord.gg/coder) to provide feedback on in-progress features and chat with the community using Coder!
+
+## Integrations
+
+We are always working on new integrations. Please feel free to open an issue and ask for an integration. Contributions are welcome in any official or community repositories.
+
+### Official
+
+- [**VS Code Extension**](https://marketplace.visualstudio.com/items?itemName=coder.coder-remote): Open any Coder workspace in VS Code with a single click
+- [**JetBrains Toolbox Plugin**](https://plugins.jetbrains.com/plugin/26968-coder): Open any Coder workspace from JetBrains Toolbox with a single click
+- [**JetBrains Gateway Plugin**](https://plugins.jetbrains.com/plugin/19620-coder): Open any Coder workspace in JetBrains Gateway with a single click
+- [**Dev Container Builder**](https://github.com/coder/envbuilder): Build development environments using `devcontainer.json` on Docker, Kubernetes, and OpenShift
+- [**Coder Registry**](https://registry.coder.com): Build and extend development environments with common use-cases
+- [**Kubernetes Log Stream**](https://github.com/coder/coder-logstream-kube): Stream Kubernetes Pod events to the Coder startup logs
+- [**Self-Hosted VS Code Extension Marketplace**](https://github.com/coder/code-marketplace): A private extension marketplace that works in restricted or airgapped networks integrating with [code-server](https://github.com/coder/code-server).
+- [**Setup Coder**](https://github.com/marketplace/actions/setup-coder): An action to setup coder CLI in GitHub workflows.
+
+### Community
+
+- [**Provision Coder with Terraform**](https://github.com/ElliotG/coder-oss-tf): Provision Coder on Google GKE, Azure AKS, AWS EKS, DigitalOcean DOKS, IBMCloud K8s, OVHCloud K8s, and Scaleway K8s Kapsule with Terraform
+- [**Coder Template GitHub Action**](https://github.com/marketplace/actions/update-coder-template): A GitHub Action that updates Coder templates
+
+## Contributing
+
+We are always happy to see new contributors to Coder. If you are new to the Coder codebase, we have
+[a guide on how to get started](https://coder.com/docs/CONTRIBUTING). We'd love to see your
+contributions!
+
+## Hiring
+
+Apply [here](https://jobs.ashbyhq.com/coder?utm_source=github&utm_medium=readme&utm_campaign=unknown) if you're interested in joining our team.
