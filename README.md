@@ -2,6 +2,19 @@
 
 Platform-specific startup scripts for running local Coder server instances. Automates binary acquisition and environment setup for development and evaluation purposes.
 
+## Table of Contents
+
+- [Status](#status)
+- [Quick Start](#quick-start)
+- [Architecture](#architecture)
+- [Platform Support](#platform-support)
+- [Configuration](#configuration)
+- [Limitations](#limitations)
+- [Documentation](#documentation)
+- [Development Workflow](#development-workflow)
+- [License](#license)
+- [Related Projects](#related-projects)
+
 ## Status
 
 This repository is in active development. The scripts are stable for local development and testing workflows. GitHub Codespaces support is the primary development focus, with improvements regularly backported to platform-specific scripts.
