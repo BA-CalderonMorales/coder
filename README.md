@@ -15,6 +15,9 @@ Platform-specific startup scripts for running local Coder server instances. Auto
 - [License](#license)
 - [Related Projects](#related-projects)
 
+
+> *Note: If these links do not respond in the GitHub Mobile app, try viewing in a browser. This is a known platform limitation.*
+
 ## Status
 
 This repository is in active development. The scripts are stable for local development and testing workflows. GitHub Codespaces support is the primary development focus, with improvements regularly backported to platform-specific scripts.
