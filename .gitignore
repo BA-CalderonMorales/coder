@@ -17,3 +17,5 @@ coder.log
 *.tar.gz
 *.tgz
 *.zip
+# Temporary files folder - never commit
+tmp/
