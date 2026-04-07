@@ -1,40 +1,31 @@
-# AGENTS.md
+# AGENTS.md - Coder Starter Scripts
 
-## Project Overview
+## Quick Reference
 
-coder-starter-scripts - [Brief description]
+- **Purpose**: Local development helper scripts
+- **Docs**: `docs/` (permanent), `tmp/` (temporary, gitignored)
 
 ## Repository Structure
 
-- Source code in root or appropriate folders
-- `docs/` - Permanent documentation (lowercase folder)
-- `tmp/` - Temporary files (never committed to git)
-
-## Conventions
-
-### Documentation Rules
-
-1. **Root .md files**: Only README.md, CONTRIBUTING.md, LICENSE.md, CHANGELOG.md, AGENTS.md allowed
-2. **tmp/ folder**: Use for one-off .md files, never commit to git
-3. **docs/ folder**: Use for permanent documentation, lowercase naming
-
-### tmp/ Folder Usage
-
-The `tmp/` folder is for:
-- One-off markdown files
-- Temporary documentation
-- Drafts and notes
-- Issue tracking files
-
-The `tmp/` folder is never committed to git (see tmp/.gitignore).
-
-## Build/Test Commands
-
-```bash
-# Add your build/test commands here
+```
+docs/       # Permanent documentation (lowercase)
+tmp/        # Temporary files (never committed)
 ```
 
-## Key Files
+## Documentation Rules
 
-- `README.md` - Main documentation
-- `AGENTS.md` - This file (coding agent context)
+1. **Root .md files**: Only README.md, CONTRIBUTING.md, LICENSE.md, CHANGELOG.md, AGENTS.md
+2. **tmp/ folder**: One-off .md files, never commit to git
+3. **docs/ folder**: Permanent documentation, lowercase naming
+
+## tmp/ Folder Usage
+
+For: one-off markdown, temporary docs, drafts, notes, issue tracking
+
+The `tmp/` folder is never committed to git.
+
+## Working Rules
+
+- Stop and explain before major architectural changes
+- One change per commit, commit before starting next
+- Do not bundle unrelated work into the same commit
