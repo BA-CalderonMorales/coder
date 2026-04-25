@@ -19,3 +19,4 @@ coder.log
 *.zip
 # Temporary files folder - never commit
 tmp/
+scripts/prune-branches.sh
