@@ -18,7 +18,7 @@ Examples of unacceptable behavior:
 
 ## Enforcement
 
-Instances of abusive behavior may be reported to the project maintainers. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive behavior may be reported to the project maintainers at 62074841+BA-CalderonMorales@users.noreply.github.com or via a private GitHub issue. All complaints will be reviewed and investigated promptly and fairly.
 
 ## Scope
 

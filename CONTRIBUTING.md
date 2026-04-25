@@ -11,4 +11,4 @@ Thank you for considering contributing to this project.
 
 ## Code of Conduct
 
-By participating, you agree to uphold our [Code of Conduct](./CODE_OF_CONDUCT.md).
+By participating, you agree to uphold our [Code of Conduct](.github/CODE_OF_CONDUCT.md).
